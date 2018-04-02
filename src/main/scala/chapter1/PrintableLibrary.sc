@@ -76,15 +76,3 @@ import PrintableSyntax._
 
 Cat("Kitty", 3, "black").print
 Cat("Nikki", 4, "red").format
-
-// ----- Using Show
-import cats.Show
-import cats.instances.int._
-import cats.instances.string._
-import cats.syntax.show._
-
-implicit val catShowOps = Show.show[Cat] { cat =>
-  s"${cat.name.show} is a ${cat.age.show} year-old ${cat.color.show} cat."
-}
-
-println(Cat("Snow", 5, "brown").show)
