@@ -1,2 +1,2 @@
-# scala-advanced-cats
-Solutions for book Advanced Scala with Cats
+# scala-with-cats
+Solutions for book [Scala with Cats](https://underscore.io/books/scala-with-cats/)
