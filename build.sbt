@@ -9,6 +9,7 @@ libraryDependencies ++= Seq(
 scalacOptions ++= Seq(
   "-unchecked",
   "-Xfatal-warnings",
-  "-Ypartial-unification"
+  "-Ypartial-unification",
+  "-language:higherKinds"
 )
 
