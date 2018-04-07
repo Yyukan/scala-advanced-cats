@@ -1,6 +1,6 @@
 name := "Scala Advanced Cats"
 
-scalaVersion := "2.12.3"
+scalaVersion := "2.12.5"
 
 libraryDependencies ++= Seq(
   "org.typelevel" %% "cats-core" % "1.0.0"
