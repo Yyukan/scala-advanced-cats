@@ -7,7 +7,7 @@
 
 // ----- Printable Library
 
-// 1. Define a typeclass Printable[A] containing a single methodformat.
+// 1. Define a type class Printable[A] containing a single method format.
 // format should accept a value of type A and return a String.
 trait Printable[A] {
   def format(value: A): String
