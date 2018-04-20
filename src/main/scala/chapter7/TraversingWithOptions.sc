@@ -19,3 +19,6 @@ process(List(2, 4, 6))
 //res0: Option[List[Int]] = Some(List(2, 4, 6))
 process(List(1, 2, 3))
 //res1: Option[List[Int]] = None
+
+List(Option(1), Option(2), Option(3)).traverse(identity)
+List(Option(1), None, Option(3)).traverse(identity)
