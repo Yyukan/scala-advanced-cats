@@ -23,7 +23,7 @@ case class Success[E, A](value: A) extends Check[E, A]
 case class Failure[E, A](errors: E) extends Check[E, A]
 
 
-Success[List[String], Int](5).and(Success(10))
+Success[List[String], Int](5).and(Success(10)).and(Success(15))
 Failure[List[String], Int](List("error1")).and(Success(5))
 Success[List[String], String]("value").and(Failure(List("error2")))
 Failure[List[String], Int](List("error1")).and(Failure(List("error2")))
