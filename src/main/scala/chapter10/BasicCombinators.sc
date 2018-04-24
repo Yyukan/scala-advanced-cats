@@ -4,13 +4,13 @@
  We need a type class that abstracts over the concept of “accumulating” errors.
  What type class do we know that looks like this?
  What method or operator should we use to implement the • operation?  */
-import cats.Monoid
+import cats.Semigroup
 import cats.syntax.semigroup._
-import cats.instances.int._
+import cats.instances.all._
 
 sealed trait Check[E, A] {
 
-  def and(that: Check[E, A])(implicit e: Monoid[E], v: Monoid[A]): Check[E, A] = (this, that) match {
+  def and(that: Check[E, A])(implicit e: Semigroup[E], v: Semigroup[A]): Check[E, A] = (this, that) match {
     case (Success(thisValue), Success(thatValue)) => Success(thisValue |+| thatValue)
     case (Success(_), Failure(_)) => that
     case (Failure(_), Success(_)) => this
@@ -18,19 +18,15 @@ sealed trait Check[E, A] {
   }
 }
 
-case class Success[E, A](value: A) extends Check[E, A] {
-  def apply(value: A): Check[E, A] = Success(value)
-}
+case class Success[E, A](value: A) extends Check[E, A]
 
-case class Failure[E, A](errors: E) extends Check[E, A] {
-  def apply(errors: E): Check[E, A] = Failure(errors)
-}
+case class Failure[E, A](errors: E) extends Check[E, A]
 
 
-Success(5).and(Success(10))
-//Failure(List("error1")).and(Success(5))
-//Success(5).and(Failure(List("error2")))
-//Failure(List("error1")).and(Failure(List("error2")))
+Success[List[String], Int](5).and(Success(10))
+Failure[List[String], Int](List("error1")).and(Success(5))
+Success[List[String], String]("value").and(Failure(List("error2")))
+Failure[List[String], Int](List("error1")).and(Failure(List("error2")))
 
 // There is another semantic issue that will come up quite quickly: should and short-circuit if the first check fails.
 // What do you think the most useful behaviour is?
