@@ -26,11 +26,11 @@ case class Validation[E, A](f: Check[E, A]) {
   }
 }
 
-val validation = Validation[List[String], Int] {
+val validation: Validation[List[String], Int] = Validation {
   value => if (value > 0) Right(value) else Left(List("Value is negative"))
 }
 
-val and = validation and Validation[List[String], Int] {
+val and: Validation[List[String], Int] = validation and Validation {
   value => if (value > 100) Right(value) else Left(List("Value should be lower then 100"))
 }
 
